@@ -55,22 +55,24 @@ function mergeSortedLinkedLists(firstList, secondList){
     const mergedList = new LinkedList()
 
     while(firstList.getCurrentNodeValue() || secondList.getCurrentNodeValue()){
-        if(!firstList.getCurrentNodeValue() && secondList.getCurrentNodeValue()){
-            mergedList.addNewNode(secondList.getCurrentNodeValue())
+        let firstListNodeValue = firstList.getCurrentNodeValue()
+        let secondListNodeValue = secondList.getCurrentNodeValue()
+        if(!firstListNodeValue && secondListNodeValue){
+            mergedList.addNewNode(secondListNodeValue)
             secondList.next()
         }
-        if(!secondList.getCurrentNodeValue() && firstList.getCurrentNodeValue()){
-            mergedList.addNewNode(firstList.getCurrentNodeValue())
+        if(!secondListNodeValue && firstListNodeValue){
+            mergedList.addNewNode(firstListNodeValue)
             firstList.next()
         }
-        if(!secondList.getCurrentNodeValue() && !firstList.getCurrentNodeValue()){
+        if(!secondListNodeValue && !firstListNodeValue){
             return mergedList
         }
-        if((firstList.getCurrentNodeValue() && secondList.getCurrentNodeValue()) && firstList.getCurrentNodeValue() <= secondList.getCurrentNodeValue()){
-            mergedList.addNewNode(firstList.getCurrentNodeValue())
+        if((firstListNodeValue && secondListNodeValue) && firstListNodeValue <= secondListNodeValue){
+            mergedList.addNewNode(firstListNodeValue)
             firstList.next()
-        } else {
-            mergedList.addNewNode(secondList.getCurrentNodeValue())
+        } else if((firstListNodeValue && secondListNodeValue)) {
+            mergedList.addNewNode(secondListNodeValue)
             secondList.next()
         }
     }
